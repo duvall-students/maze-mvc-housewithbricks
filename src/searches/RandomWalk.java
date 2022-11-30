@@ -8,22 +8,13 @@ import java.util.Random;
 
 import application.Maze;
 
-public class RandomWalk{
+public class RandomWalk  extends SearchAlgorithm{
 	public final double EXPLORE_BIAS = .999;
 	private Point next;
 	private Random rand;
-	
-	private Maze maze;					// The maze being solved
-	private Point goal;					// The goal Point - will let us know when search is successful
-	private Collection<Point> data;		// Data structure used to keep "fringe" points
-	private boolean searchOver = false;	// Is search done?
-	private boolean searchResult = false;	// Was it successful?
-	private Point current;				// Current point being explored
-	
+
 	public RandomWalk(Maze mazeBlocks, Point startPoint, Point goalPoint){
-		maze = mazeBlocks;
-		goal = goalPoint;
-		current = startPoint;
+		super(mazeBlocks,startPoint,goalPoint);
 		maze.markPath(current);
 		next = startPoint;
 		rand = new Random();
