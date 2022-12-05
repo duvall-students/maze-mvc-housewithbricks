@@ -11,24 +11,19 @@ import java.util.Queue;
 
 import application.Maze;
 
-public class Greedy{	
+public class Greedy extends BFS{	
 
 	// Keeps up with the child-parent trail so we can recreate the chosen path
 	HashMap<Point,Point> childParent;
 
-	private Maze maze;					// The maze being solved
-	private Point goal;					// The goal Point - will let us know when search is successful
 	private Collection<Point> data;		// Data structure used to keep "fringe" points
 	private boolean searchOver = false;	// Is search done?
 	private boolean searchResult = false;	// Was it successful?
-	private Point current;				// Current point being explored
 
 
 	public Greedy(Maze mazeBlocks, Point startPoint, Point goalPoint){
-		maze = mazeBlocks;
-		goal = goalPoint;
-		current = startPoint;
-		maze.markPath(current);
+		super(mazeBlocks,startPoint,goalPoint);
+		this.maze.markPath(this.current);
 		childParent = new HashMap<>();
 		// For a greedy searcher, we will use a priority queue
 		// based on the number of steps away from the goal.		

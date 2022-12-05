@@ -8,6 +8,7 @@ import searches.Greedy;
 import searches.Magic;
 import searches.RandomWalk;
 import searches.SearchAlgorithm;
+import searches.SearchFactory;
 
 public class MazeController {
 	/* 
@@ -23,6 +24,7 @@ public class MazeController {
 	// the implemented search class names will result in no search happening.
 	private MazeDisplay display;
 	private Maze maze;
+	public SearchFactory factory = new SearchFactory();
 	Point start;
 	Point goal;
 	
@@ -45,14 +47,16 @@ public class MazeController {
 
 	public void startSearch(String searchType) {
 		maze.reColorMaze();
+		search = factory.makeSearch(searchType, maze, start, goal);	
+		
 		
 		// Restart the search.  Since I don't know 
 		// which one, I'll restart all of them.
-		bfs = new BFS(maze, start, goal);	// start in upper left and end in lower right corner
-		dfs = new DFS(maze, start, goal);
-		greedy = new Greedy(maze, start, goal);
-		rand = new RandomWalk(maze, start, goal);
-		magic = new Magic(maze, start, goal);
+//		search = new BFS(maze, start, goal);	// start in upper left and end in lower right corner
+//		search = new DFS(maze, start, goal);
+//		search = new Greedy(maze, start, goal);
+//		search = new RandomWalk(maze, start, goal);
+//		search = new Magic(maze, start, goal);
 	}
 
 	
